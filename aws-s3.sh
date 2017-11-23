@@ -5,7 +5,7 @@ CERTIFICATE_ARN=''
 CNAME=''
 
 # Get arguments if they exists
-while getopts 'b:r:c:a' flag; do
+while getopts 'b:r:c:a:' flag; do
   case "${flag}" in
     b) S3_BUCKET_NAME="${OPTARG}" ;;
     r) S3_BUCKET_REGION="${OPTARG}" ;;
@@ -19,11 +19,11 @@ if [ -z "$S3_BUCKET_NAME" ]
 then
   echo "Please specify a buckket name to create"
   echo "aws-s3.sh -b [BUCKET_NAME]"
-if [ -z "$CNAME" ]
+elif [ -z "$CNAME" ]
 then
   echo "Please specify a CNAME to create"
   echo "aws-s3.sh -c [CNAME]"
-if [ -z "$CERTIFICATE_ARN" ]
+elif [ -z "$CERTIFICATE_ARN" ]
 then
   echo "Please specify a Cert to create"
   echo "aws-s3.sh -a [CERTIFICATE_ARN]"
@@ -44,9 +44,9 @@ else
 
   echo "Setting up cloudfront distribution"
   gulp generate-config --domain $BUCKET_URL --certificate $CERTIFICATE_ARN --cname $CNAME
+
   aws cloudfront create-distribution \
     --distribution-config file://config/cloudfront-config.json >> config/final-config.json
   
   echo "Cloudfront set up"
 fi
-
