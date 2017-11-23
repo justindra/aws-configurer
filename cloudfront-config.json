@@ -1,0 +1,68 @@
+{
+    "Origins": {
+        "Items": [
+            {
+                "OriginPath": "", 
+                "CustomOriginConfig": {
+                    "OriginSslProtocols": {
+                        "Items": [
+                            "TLSv1", 
+                            "TLSv1.1", 
+                            "TLSv1.2"
+                        ], 
+                        "Quantity": 3
+                    }, 
+                    "OriginProtocolPolicy": "http-only", 
+                    "OriginReadTimeout": 30, 
+                    "HTTPPort": 80, 
+                    "HTTPSPort": 443, 
+                    "OriginKeepaliveTimeout": 5
+                }, 
+                "CustomHeaders": {
+                    "Quantity": 0
+                },
+                "Id": "something", 
+                "DomainName": ""
+            }
+        ], 
+        "Quantity": 1
+    }, 
+    "DefaultRootObject": "index.html", 
+    "Enabled": true,
+    "Comment": "",
+    "DefaultCacheBehavior": {
+        "TargetOriginId": "something", 
+        "ViewerProtocolPolicy": "redirect-to-https",
+        "ForwardedValues": {
+            "Headers": {
+                "Quantity": 0
+            }, 
+            "Cookies": {
+                "Forward": "none"
+            }, 
+            "QueryStringCacheKeys": {
+                "Quantity": 0
+            }, 
+            "QueryString": false
+        },
+        "TrustedSigners": {
+            "Enabled": false, 
+            "Quantity": 0
+        },
+        "MinTTL": 0
+    }, 
+    "CallerReference": "", 
+    "ViewerCertificate": {
+        "SSLSupportMethod": "sni-only", 
+        "ACMCertificateArn": "",
+        "MinimumProtocolVersion": "TLSv1.1_2016", 
+        "Certificate": "", 
+        "CertificateSource": "acm"
+    }, 
+    "HttpVersion": "http2",
+    "Aliases": {
+        "Items": [
+        ], 
+        "Quantity": 1
+    }
+}
